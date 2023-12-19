@@ -25,13 +25,15 @@
       <description>FCU - SPD Target Condition</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.0, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <source type="FSUIPC" offset="0x5408" offsetType="String" size="255" mask="0xFFFFFFFF" bcdMode="False" />
-        <test type="String" value="SPD ---*" />
+        <test type="String" value="SPD ---" />
         <modifiers>
-          <substring active="True" start="0" end="7" />
-          <comparison active="True" value="SPD ---" operand="!=" ifValue="1" elseValue="0" />
+          <substring active="True" start="4" end="7" />
+          <comparison active="True" value="---" operand="=" ifValue="0" elseValue="1" />
         </modifiers>
         <display type="-" serial="-" trigger="normal" pin="" pinBrightness="255" />
-        <preconditions />
+        <preconditions>
+          <precondition type="config" active="true" ref="5cb3302c-a104-4fd7-ab02-b6b49bf5d33b" operand="=" value="1" logic="and" />
+        </preconditions>
         <configrefs />
       </settings>
     </config>
@@ -49,7 +51,7 @@
           <line>setMach=0$$</line>
         </display>
         <preconditions>
-          <precondition type="config" active="true" ref="2db0b156-a792-416a-970c-b2f7d8b62458" operand="!=" value="0" logic="and" />
+          <precondition type="config" active="true" ref="e6ff34ad-9a39-4bf4-83cd-ea818057dc42" operand="!=" value="1" logic="and" />
           <precondition type="config" active="true" ref="d5474f7c-7c7a-46b1-9828-e0fa990ab164" operand="=" value="1" logic="and" />
         </preconditions>
         <configrefs />
@@ -88,14 +90,14 @@
           <line>setMachLabel=$</line>
         </display>
         <preconditions>
-          <precondition type="config" active="true" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="=" value="-1" logic="and" />
+          <precondition type="config" active="false" ref="bb9fc77e-8eca-4508-9d91-de808b27b4d5" operand="=" value="-1" logic="and" />
         </preconditions>
         <configrefs />
       </settings>
     </config>
     <config guid="e6ff34ad-9a39-4bf4-83cd-ea818057dc42">
       <active>true</active>
-      <description>FCU - SPD Dashes</description>
+      <description>FCU - SPD Dashes Value</description>
       <settings msdata:InstanceType="MobiFlight.OutputConfigItem, MFConnector, Version=10.0.2.0, Culture=neutral, PublicKeyToken=null" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
         <source type="SimConnect" VarType="CODE" Value="(L:I_FCU_SPEED_MANAGED)" UUID="28029cad-8379-419c-ba1f-589cada617fa" />
         <test type="Float" value="0" />
